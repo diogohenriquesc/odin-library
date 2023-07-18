@@ -1,0 +1,86 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+:root {
+  --ff-accent: 'Major Mono Display', monospace;
+  --ff-regular: 'Space Mono', monospace;
+}
+
+main {
+  text-align: center;
+}
+
+main h1 {
+  font-family: var(--ff-accent);
+  background-color: #121212;
+  color: #fff;
+  padding: 1rem;
+}
+
+.books__container {
+  width: calc(100% - 1.25rem);
+  max-width: 34.375rem;
+  margin-inline: auto;
+  padding-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.book {
+  border: 1px solid #121212;
+  border-radius: .625rem;
+  font-family: var(--ff-regular);
+  padding: 1rem;
+  transition: all 200ms ease-in-out;
+}
+
+.book:hover {
+  background: #121212;
+  color: white;
+}
+
