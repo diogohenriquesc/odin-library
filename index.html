@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,13 +12,48 @@
   <script src="./js/script.js" defer></script>
   <title>Library</title>
 </head>
+
 <body>
   <main>
-    <h1>Galaxy Library</h1>
+    <h1 class="main__title">Galaxy Library</h1>
 
-    <section class="books__container">
-      
+    <div class="library__header container open">
+      <div class="library__control">
+        <button class="library__control-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48">
+            <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
+          </svg>
+        </button>
+      </div>
+
+        <form class="library__form">
+          <div class="library__form-wrapper">
+            <label for="title">Book Title</label>
+            <input type="text" id="title" required>
+            <label for="author">Book Author</label>
+            <input type="text" id="author" required>
+            <label for="pages">Total Pages</label>
+            <input type="number" id="pages" min="1" required>
+            <fieldset aria-label="book status switcher" role="radiogroup">
+              <div class="status-toggle">
+                <span class="status-toggle__wrapper">
+                  <input type="radio" name="book-status" id="not-read" value="not-read" checked>
+                  <input type="radio" name="book-status" id="read" value="read">
+                  <span class="status-toggle__background" aria-hidden="true"></span>
+                  <span class="status-toggle__switcher" aria-hidden="true"></span>
+                </span>
+                <label for="read">already read!</label>
+              </div>
+            </fieldset>
+            <button type="submit">Add</button>
+          </div>
+        </form>
+    </div>
+
+    <section class="books__container container">
+
     </section>
-  </main>  
+  </main>
 </body>
+
 </html>

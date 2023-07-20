@@ -1,62 +1,79 @@
+const libraryForm = document.querySelector('.library__form');
 const booksContainer = document.querySelector('.books__container');
 let myLibrary = [];
 
-function Book(title, author, pages, wasRead) {
-	this.title = title;
-	this.author = author;
-	this.pages = pages;
-	this.wasRead = wasRead;
-	this.info = function () {
-		return `${this.title} by ${this.author}, ${this.pages} pages, ${
-			wasRead ? 'already read' : 'no read yet'
-		}`;
-	};
+libraryForm.addEventListener('submit', (e) => {createNewBook(e)});
+
+function createNewBook(e) {
+	e.preventDefault();
+	const form = e.target;
+	const newBook = new Book(
+		form.title.value,
+		form.author.value,
+		form.pages.value,
+		form.read.checked
+	);
+
+	addBookToLibrary(newBook);
+	displayAllBooks();
 }
 
 function addBookToLibrary(book) {
 	myLibrary.push(book);
 }
 
-function createBookDom(book) {
-  const bookElement = document.createElement('div');
-	const bookTitle = document.createElement('h2');
-	const bookAuthor = document.createElement('p');
-	const bookPages = document.createElement('p');
-	const bookStatus = document.createElement('p');
+function displayAllBooks() {
+	clearBookContainer();
+	for (let i = 0; i < myLibrary.length; i++) {
+		booksContainer.appendChild(createBookElement(myLibrary[i]));
+	}
+}
 
-  bookElement.classList.add('book');
-	bookTitle.classList.add('book__title');
-	bookAuthor.classList.add('book__author');
-	bookPages.classList.add('book__pages');
-	bookStatus.classList.add('book__status');
+function clearBookContainer() {
+	booksContainer.innerHTML = '';
+}
 
-	bookTitle.textContent = book.title;
-	bookAuthor.textContent = book.author;
-	bookPages.textContent = `${book.pages} pages`;
-	bookStatus.textContent = book.wasRead
-		? 'already read!'
-		: 'not read yet!';
+function createBookElement(book) {
+	const bookElement = createElement('div', 'book', '');
+	const bookTitle = createElement('h2', 'book__title', book.title);
+	const bookAuthor = createElement('p', 'book__author', book.author);
+	const bookPages = createElement('p', 'book__pages', book.pages);
+	const bookStatus = createElement('p', 'book__status', book.wasRead ? 'already read!' : 'not read yet!');
 
 	bookElement.appendChild(bookTitle);
 	bookElement.appendChild(bookAuthor);
 	bookElement.appendChild(bookPages);
 	bookElement.appendChild(bookStatus);
 
-  return bookElement;
+	return bookElement;
 }
 
-function displayAllBooks() {
-	for (let i = 0; i < myLibrary.length; i++) {
-		booksContainer.appendChild(createBookDom(myLibrary[i]))
-	}
+function createElement(tag, className, content) {
+	const newElement = document.createElement(tag);
+	newElement.classList.add(className);
+	newElement.textContent = content;
+
+	return newElement;
 }
 
-const book1 = new Book('UBIK', 'Philip K. Dick', 248, false);
-const book2 = new Book('Neuromancer', 'William Gibson', 320, false);
-const book3 = new Book('I, Robot', 'Issac Asimov', 320, false);
+function Book(title, author, pages, wasRead) {
+	this.title = title;
+	this.author = author;
+	this.pages = pages;
+	this.wasRead = wasRead;
+}
 
-addBookToLibrary(book1);
-addBookToLibrary(book2);
-addBookToLibrary(book3);
 
-displayAllBooks();
+// Open Form Button
+
+const openBtn = document.querySelector('.library__control button');
+
+openBtn.addEventListener('click', (e) => {
+	document.querySelector('.library__header').classList.toggle('open');
+})
+
+
+const addButton = document.querySelector('.library__form button')
+
+addButton.click();
+addButton.click();
