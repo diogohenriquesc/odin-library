@@ -57,14 +57,34 @@ h6 {
   --clr-neutral-2: rgb(206, 214, 224);
   --br-small: .25rem;
   --br-medium: .5rem;
-  /* https: //coolors.co/faa916-fbfffe-6d676e-1b1b1e-96031a */
+  /* https://coolors.co/faa916-fbfffe-6d676e-1b1b1e-96031a */
+}
+
+
+/* Animations */
+
+@keyframes shake {
+
+  0%,
+  50%,
+  100% {
+    transform: rotate(0);
+  }
+
+  25% {
+    transform: rotate(25deg);
+  }
+
+  75% {
+    transform: rotate(-25deg);
+  }
 }
 
 /* Helper Clasees */
 
 .container {
   width: calc(100% - 1.25rem);
-  max-width: 34.375rem;
+  max-width: 43.75rem;
   margin-inline: auto;
 }
 
@@ -193,6 +213,10 @@ body {
   cursor: pointer;
 }
 
+.status-toggle input[type="radio"]:focus ~ .status-toggle__background {
+  outline: 1px solid var(--clr-accent);
+}
+
 .status-toggle__wrapper {
   position: relative;
   display: flex;
@@ -259,26 +283,119 @@ body {
 /* Books */
 
 .books__container {
-  padding-top: 2rem;
+  padding-top: 4rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 3rem 1rem;
 }
 
-.book {
+.card {
   position: relative;
-  border: 1px solid var(--clr-neutral-2);
-  border-radius: var(--br-small);
-  padding: 1rem;
   transition: all 200ms ease-in-out;
-  text-align: start;
+}
+
+.card:hover .card__front {
+  transform: translateY(-35px);
+}
+
+.card__front {
+  position: relative;
+  border: 1px solid var(--clr-strong-3);
+  padding: .8rem;
+  background-color: var(--clr-neutral-1);
+  transition: all 200ms ease-in-out;
+  text-align: center;
+  z-index: 99;
+}
+
+.card__title {
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.card__author {
+  color: var(--clr-strong-3);
+  font-size: 15px;
+  margin-bottom: 1.7rem;
+}
+
+.card__pages,
+.card__status {
+  border: 1px solid var(--clr-strong-2);
+  padding: 7px;
+  width: calc(50% - 5px);
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.card__status {
+  margin-left: 10px;
+}
+
+.card__pages::before,
+.card__status::before {
+  font-size: 12.5px;
+  position: absolute;
+  left: 5px;
+  top: -12px;
+  padding-inline: 7px;
+  background-color: var(--clr-neutral-1);
+}
+
+.card__pages::before {
+  content: 'Pages';
+}
+
+.card__status::before {
+  content: 'Status';
+}
+
+.card__back {
+  position: absolute;
+  inset: 0;
+  border: 1px dashed var(--clr-strong-2);
   z-index: 0;
+  transition: all 200ms ease-in-out;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  padding: .375rem;
+}
+
+.card__back .card__remove {
+  border: none;
+  background-color: transparent;
+  width: 22px;
+  height: 22px;
+  color: #96031A;
+  cursor: pointer;
+  transition: all 200ms;
+}
+
+.card__back .card__remove:hover {
+  animation: .35s shake infinite;
 }
 
 
-
-.book:hover {
-  background: var(--clr-strong-1);
+.card__back .card__change-status {
+  background: var(--clr-accent);
   color: var(--clr-neutral-1);
+  border: 1px solid transparent;
+  font-size: 13px;
+  padding: 0 10px;
+  cursor: pointer;
+  font-weight: 700;
+  margin-left: 1rem;
+  transition: all 200ms ease-in-out;
+}
+
+.card__back .card__change-status:hover {
+  color: var(--clr-accent);
+  background-color: var(--clr-neutral-1);
+  border: 1px solid var(--clr-accent);
+}
+
+footer {
 
 }
