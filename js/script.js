@@ -99,15 +99,17 @@ function updateCard(card) {
 	}
 }
 
-function Book(title, author, pages, readStatus) {
-	this.title = title;
-	this.author = author;
-	this.pages = pages;
-	this.readStatus = readStatus;
-}
+class Book {
+	constructor(title, author, pages, readStatus) {
+		this.title = title;
+		this.author = author;
+		this.pages = pages;
+		this.readStatus = readStatus;
+	}
 
-Book.prototype.changeReadStatus = function() {
-	this.readStatus = !this.readStatus;
+	changeReadStatus = () => {
+		this.readStatus = !this.readStatus;
+	}
 }
 
 // Open Form Button
